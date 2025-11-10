@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高職科系參觀 - 志願排序系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>社區高中職涯參訪志願調查</title>
     <!-- 載入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -46,11 +46,11 @@
 
     <div class="max-w-6xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-xl">
 
-        <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">高職科系參觀 - 志願排序系統</h1>
+        <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">社區高中職涯參訪志願調查</h1>
 
         <!-- 1. 志願方塊區 (可拖曳來源) -->
         <div class="mb-8">
-            <h2 class="text-xl font-semibold mb-3 text-gray-700">請將下方10個科系方塊拖曳至下方的志願序方框中：</h2>
+            <h2 class="text-xl font-semibold mb-3 text-gray-700">參訪科系與實作主題：(滑鼠移到科系上會出現進一步說明)</h2>
             <div id="source-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-4 bg-gray-50 rounded-lg border border-gray-300">
                 <!-- 志願方塊將由 JavaScript 動態生成於此 -->
             </div>
@@ -58,7 +58,7 @@
 
         <!-- 2. 志願排序區 (放置目標) - !! 已修復 !! -->
         <div class="mb-8">
-            <h2 class="text-xl font-semibold mb-3 text-gray-700">我的志願序（請將上方方塊拖入）：</h2>
+            <h2 class="text-xl font-semibold mb-3 text-gray-700">我的志願序（請將上方科系方塊依你最想了解的順序，依序拖到下方的方框中)：</h2>
             <div id="target-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 <!-- 志願排序框將由 JavaScript 動態生成於此 -->
             </div>
@@ -161,9 +161,18 @@
                 // 排序框內的提示文字
                 const rankLabel = document.createElement('span');
                 rankLabel.className = 'text-gray-500 font-semibold';
-                rankLabel.textContent = `志願 ${i}`;
-                rankBox.appendChild(rankLabel);
                 
+                // 根據要求修改志願1的文字
+                if (i === 1) {
+                    rankLabel.textContent = `志願 ${i} (最想了解)`;
+                } else {
+                    rankLabel.textContent = `志願 ${i}`;
+                }
+                
+                rankBox.appendChild(rankLabel);
+
+                // !! 錯誤修復 !!
+                // 將建立好的排序框 (rankBox) 加入到目標容器 (targetContainer) 中
                 targetContainer.appendChild(rankBox);
 
                 // 產生表格標題 (已移除)
